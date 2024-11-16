@@ -157,6 +157,7 @@ extern int brief_listing;
 extern int reverse_tree;
 extern int out_line;
 extern char *start_name;
+extern char *start_name_reverse;
 extern int max_depth;
 extern int emacs_option;
 extern int debug;

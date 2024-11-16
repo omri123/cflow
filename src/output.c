@@ -348,7 +348,7 @@ inverted_tree(int lev, int last, Symbol *sym)
 static void
 tree_output()
 {
-     Symbol **symbols, *main_sym;
+     Symbol **symbols, *start_sym;
      size_t i, num;
      cflow_depmap_t depmap;
      
@@ -389,14 +389,19 @@ tree_output()
      begin();
     
      if (reverse_tree) {
-	  for (i = 0; i < num; i++) {
-	       inverted_tree(0, 0, symbols[i]);
-	       separator();
-	  }
+       if (start_name_reverse && (start_sym = lookup(start_name_reverse))){
+	         inverted_tree(0, 0, start_sym);
+	         separator();
+       } else {
+	    for (i = 0; i < num; i++) {
+	         inverted_tree(0, 0, symbols[i]);
+	         separator();
+	    }
+       }
      } else {
-	  main_sym = lookup(start_name);
-	  if (main_sym) {
-	       direct_tree(0, 0, main_sym);
+	  start_sym = lookup(start_name);
+	  if (start_sym) {
+	       direct_tree(0, 0, start_sym);
 	       separator();
 	  } else {
 	       for (i = 0; i < num; i++) {

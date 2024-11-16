@@ -217,6 +217,7 @@ char *level_begin = "";
 int preprocess_option = 0; /* Do they want to preprocess sources? */
 
 char *start_name = "main"; /* Name of start symbol */
+char *start_name_reverse = NULL; /* In reverse mode, default is not to have start symbol */
 
 struct linked_list *arglist;        /* List of command line arguments */
 
@@ -624,6 +625,7 @@ parse_opt (int key, char *arg, struct argp_state *state)
 	  break;
      case 'm':
 	  start_name = strdup(arg);
+       start_name_reverse = start_name;
 	  break;
      case 'n':
 	  print_line_numbers = 1;
